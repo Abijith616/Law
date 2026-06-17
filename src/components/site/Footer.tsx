@@ -11,14 +11,18 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-sm bg-gold font-display text-xl font-semibold text-primary">
-              M
-            </span>
-            <span className="font-display text-xl">{firm.shortName}</span>
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-ivory p-1">
+              <img
+                src="/icon-transparent.png"
+                alt=""
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <span className="font-display text-xl text-ivory font-semibold">{firm.shortName}</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-primary-foreground/75">{t(firm.tagline)}</p>
           <p className="mt-6 text-xs uppercase tracking-[0.18em] text-gold">
-            Bar Council Reg. {firm.leadAdvocate.barCouncilNo}
+            ICAI FRN {firm.leadAdvocate.barCouncilNo}
           </p>
         </div>
 
@@ -100,8 +104,8 @@ export function Footer() {
             © {year} {firm.name}. All rights reserved.
           </p>
           <p className="max-w-xl text-[11px] leading-relaxed">
-            As per Bar Council of India rules, this website is for informational purposes only and
-            does not constitute solicitation, advertisement or legal advice.
+            As per Institute of Chartered Accountants of India (ICAI) guidelines, this website is for informational purposes only and
+            does not constitute solicitation, advertisement or professional advice.
           </p>
         </div>
       </div>

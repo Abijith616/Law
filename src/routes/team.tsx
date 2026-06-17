@@ -8,12 +8,12 @@ export const Route = createFileRoute("/team")({
       { title: `Our Team — ${firm.name}` },
       {
         name: "description",
-        content: "Meet the partners and associates at Menon & Partners Advocates, Kochi.",
+        content: "Meet the partners and associates at JA & Associates Chartered Accountants, Angamaly.",
       },
       { property: "og:title", content: `Our Team — ${firm.name}` },
       {
         property: "og:description",
-        content: "Meet the partners and associates at Menon & Partners Advocates.",
+        content: "Meet the partners and associates at JA & Associates Chartered Accountants.",
       },
     ],
   }),
@@ -30,7 +30,7 @@ function Team() {
             <span className="h-px w-10 bg-gold" /> {t(ui.nav.team)}
           </div>
           <h1 className="max-w-3xl font-display text-4xl leading-tight text-primary sm:text-6xl">
-            A small bench of advocates with deep court-room experience.
+            A team of Chartered Accountants with deep professional experience.
           </h1>
         </div>
       </section>
@@ -47,7 +47,7 @@ function Team() {
                 <p className="text-xs uppercase tracking-[0.18em] text-gold">{t(m.role)}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{t(m.bio)}</p>
                 <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {m.years} years at the bar
+                  {m.years} years of practice
                 </p>
               </div>
             </li>

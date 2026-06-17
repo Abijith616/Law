@@ -81,7 +81,7 @@ export function ContactForm() {
           htmlFor="message"
           className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground"
         >
-          Tell us briefly about your matter
+          Tell us briefly about your requirements
         </label>
         <textarea
           id="message"
@@ -94,7 +94,7 @@ export function ContactForm() {
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">
-          Submitting this form does not create an advocate–client relationship.
+          Submitting this form does not create a professional relationship.
         </p>
         <button
           type="submit"

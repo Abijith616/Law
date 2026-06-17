@@ -23,15 +23,17 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-ivory/85 backdrop-blur supports-[backdrop-filter]:bg-ivory/70">
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:grid-cols-[auto_1fr_auto]">
         <Link to="/" className="flex min-w-0 items-center gap-3" aria-label={firm.name}>
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-primary font-display text-xl font-semibold text-primary-foreground">
-            M
-          </span>
+          <img
+            src="/icon-transparent.png"
+            alt=""
+            className="h-10 w-10 shrink-0 object-contain"
+          />
           <span className="min-w-0">
-            <span className="block truncate font-display text-lg leading-tight text-primary">
+            <span className="block truncate font-display text-lg leading-tight text-primary font-semibold">
               {firm.shortName}
             </span>
             <span className="block truncate text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Advocates · Est. {firm.established}
+              Chartered Accountants · Est. {firm.established}
             </span>
           </span>
         </Link>

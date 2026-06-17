@@ -60,7 +60,7 @@ export const ui = {
     whyUs: { en: "Why clients choose us", ml: "ക്ലയന്റുകൾ ഞങ്ങളെ തിരഞ്ഞെടുക്കുന്നത് എന്തുകൊണ്ട്" },
     testimonials: { en: "Client testimonials", ml: "ക്ലയന്റ് അഭിപ്രായങ്ങൾ" },
     insights: { en: "Recent Insights", ml: "സമീപകാല ലേഖനങ്ങൾ" },
-    leadAdvocate: { en: "Lead Advocate", ml: "മുഖ്യ വക്കീൽ" },
-    courts: { en: "Where we appear", ml: "ഞങ്ങൾ ഹാജരാകുന്ന കോടതികൾ" },
+    leadAdvocate: { en: "Lead Partner", ml: "മുഖ്യ പങ്കാളി" },
+    courts: { en: "Appellate Tribunals", ml: "ഞങ്ങൾ ഹാജരാകുന്ന ട്രൈബ്യൂണലുകൾ" },
   },
 } as const;

@@ -66,8 +66,7 @@ function AreaDetail() {
           <p className="text-lg leading-relaxed">{t(area.body)}</p>
           <p className="mt-6 text-base text-muted-foreground">
             Engagements begin with a written fee note. We accept payments by bank transfer, UPI and
-            cheque. For urgent matters (arrest, freeze orders, injunctions), reach us on WhatsApp at
-            any hour.
+            cheque. For urgent filing queries, reach us on WhatsApp during business hours.
           </p>
         </div>
         <aside className="border border-gold bg-card p-7">

@@ -33,13 +33,12 @@ function About() {
           <h1 className="font-display text-4xl leading-tight text-primary sm:text-6xl">
             A Kerala firm built on plain advice
             <br className="hidden sm:block" />
-            and patient court-room work.
+            and accurate financial work.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            {firm.name} was established in {firm.established} in {t(firm.city)}. For over two
-            decades we have represented individuals and businesses across property, family,
-            criminal, tax and commercial matters — from the sub-divisional magistrate's court to the
-            Supreme Court of India.
+            {firm.name} was established in {firm.established} in {t(firm.city)}. For over a decade
+            we have assisted individuals and businesses across GST compliance, tax filings, audits,
+            company registration, and corporate advisory.
           </p>
         </div>
       </section>
@@ -58,8 +57,8 @@ function About() {
                 body: "Every engagement begins with a written fee note. We don't bill outside of it.",
               },
               {
-                title: "Court-first practice",
-                body: "We are litigators. Drafting, evidence and oral advocacy are our craft, not an afterthought.",
+                title: "Compliance-first practice",
+                body: "We are accountants. Auditing, tax filings, and regulatory advisory are our craft, not an afterthought.",
               },
               {
                 title: "Long-term relationships",
@@ -79,8 +78,12 @@ function About() {
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
           <SectionHeading eyebrow={t(ui.sections.leadAdvocate)} title={firm.leadAdvocate.name} />
           <div className="mt-10 grid gap-10 lg:grid-cols-[280px_1fr] lg:items-start">
-            <div className="grid aspect-square w-full max-w-[280px] place-items-center bg-primary font-display text-7xl text-primary-foreground">
-              RM
+            <div className="aspect-square w-full max-w-[280px] overflow-hidden border border-border bg-white p-2">
+              <img
+                src="/icon.jpeg"
+                alt={firm.leadAdvocate.name}
+                className="h-full w-full object-contain"
+              />
             </div>
             <div>
               <p className="text-lg text-foreground">
@@ -90,7 +93,7 @@ function About() {
               <dl className="mt-8 grid gap-6 sm:grid-cols-3">
                 <div>
                   <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                    Years at the bar
+                    Years of Practice
                   </dt>
                   <dd className="mt-1 font-display text-2xl text-primary">
                     {firm.leadAdvocate.yearsOfPractice}
@@ -98,7 +101,7 @@ function About() {
                 </div>
                 <div>
                   <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                    Bar Council Reg.
+                    Firm Reg. No. (FRN)
                   </dt>
                   <dd className="mt-1 font-display text-2xl text-primary">
                     {firm.leadAdvocate.barCouncilNo}
@@ -106,14 +109,14 @@ function About() {
                 </div>
                 <div>
                   <dt className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                    AIBE
+                    ICAI Membership No.
                   </dt>
                   <dd className="mt-1 font-display text-2xl text-primary">
                     {firm.leadAdvocate.aibe}
                   </dd>
                 </div>
               </dl>
-              <h3 className="mt-10 font-display text-xl text-primary">{t(ui.sections.courts)}</h3>
+              <h3 className="mt-10 font-display text-xl text-primary">Appellate Tribunals & Forums</h3>
               <ul className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
                 {firm.courts.map((c) => (
                   <li key={c} className="flex items-center gap-2">

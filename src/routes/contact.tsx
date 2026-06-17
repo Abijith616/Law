@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
       { title: `Contact — ${firm.name}` },
       {
         name: "description",
-        content: `Call, WhatsApp or visit our Ernakulam office. ${firm.contact.phone}.`,
+        content: `Call, WhatsApp or visit our Angamaly office. ${firm.contact.phone}.`,
       },
       { property: "og:title", content: `Contact — ${firm.name}` },
       { property: "og:description", content: "Free initial consultation. Direct WhatsApp access." },
@@ -48,7 +48,7 @@ function Contact() {
             <span className="h-px w-10 bg-gold" /> {t(ui.nav.contact)}
           </div>
           <h1 className="max-w-3xl font-display text-4xl leading-tight text-primary sm:text-6xl">
-            Talk to an advocate. The first 15 minutes are on us.
+            Talk to a partner. The first 15 minutes are on us.
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
             Tell us about your matter in plain language. We'll respond within one business day —

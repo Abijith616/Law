@@ -11,12 +11,12 @@ export const Route = createFileRoute("/practice-areas")({
       {
         name: "description",
         content:
-          "Property, matrimonial, criminal defence, consumer/NCDRC, labour & service, GST & tax, motor accident claims, corporate — handled by senior counsel in Kerala.",
+          "Taxation & GST compliance, statutory audit, bookkeeping, company registration, corporate law, project reports, risk advisory, NCLT representation — handled by experienced partners.",
       },
       { property: "og:title", content: `Practice Areas — ${firm.name}` },
       {
         property: "og:description",
-        content: "Eight focused practice areas, handled personally by a partner.",
+        content: "Eight focused financial and compliance practices, handled personally by a partner.",
       },
     ],
   }),
@@ -52,8 +52,8 @@ function PracticeAreasLayout() {
 
       <section className="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
         <SectionHeading
-          eyebrow={t(ui.sections.courts)}
-          title="From district court hearings to constitution-bench appearances."
+          eyebrow="Appellate Tribunals & MCA"
+          title="Representing clients before taxation and corporate tribunals."
         />
         <ul className="mt-8 grid gap-3 text-base text-foreground sm:grid-cols-2">
           {firm.courts.map((c) => (

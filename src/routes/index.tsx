@@ -11,17 +11,17 @@ import { TrustStrip } from "@/components/site/TrustStrip";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${firm.name} — Advocates in Ernakulam, Kerala` },
+      { title: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam` },
       {
         name: "description",
         content:
-          "Boutique law firm in Ernakulam, Kerala. Property, matrimonial, criminal defence, consumer, GST and corporate matters at District Court, Kerala High Court and Supreme Court.",
+          "Professional Chartered Accountant firm in Angamaly, Ernakulam, Kerala. Expert auditing, taxation, GST compliance, company registration, and corporate financial advisory.",
       },
-      { property: "og:title", content: `${firm.name} — Advocates in Ernakulam, Kerala` },
+      { property: "og:title", content: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam` },
       {
         property: "og:description",
         content:
-          "Counsel you can call. Advocacy you can trust. Free initial consultation, direct WhatsApp access.",
+          "Expert financial advice. Trustworthy auditing and taxation solutions. Free 15-minute consultation, direct WhatsApp access.",
       },
     ],
     scripts: [
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/")({
           address: {
             "@type": "PostalAddress",
             streetAddress: firm.contact.address.en,
-            addressLocality: "Kochi",
+            addressLocality: "Angamaly",
             addressRegion: "Kerala",
             addressCountry: "IN",
           },
@@ -80,14 +80,12 @@ function Home() {
               Est. {firm.established} · {t(firm.city)}
             </div>
             <h1 className="font-display text-[2.6rem] leading-[1.05] text-primary sm:text-6xl md:text-7xl">
-              Counsel you can <span className="italic text-gold">call</span>.
+              Financial advice you can <span className="italic text-gold">trust</span>.
               <br className="hidden sm:block" />
-              Advocacy you can trust.
+              Solutions you can count on.
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
-              A boutique Kerala firm representing individuals and businesses at the District Court,
-              Kerala High Court and Supreme Court of India. Plain advice, transparent fees, direct
-              access.
+              A professional Chartered Accountant firm representing individuals and businesses across GST compliance, tax filings, audits, and company incorporation. Plain advice, transparent fees, direct access.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -108,7 +106,7 @@ function Home() {
               </a>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              <span>Bar Council {firm.leadAdvocate.barCouncilNo}</span>
+              <span>ICAI FRN {firm.leadAdvocate.barCouncilNo}</span>
               <span className="inline-flex items-center gap-1.5">
                 <Star className="h-3.5 w-3.5 fill-gold text-gold" />
                 {reviews.rating} on Google · {reviews.count} reviews
@@ -127,8 +125,12 @@ function Home() {
                 {t(firm.consultation)}
               </div>
               <div className="flex items-start gap-5">
-                <div className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-primary font-display text-3xl text-primary-foreground">
-                  RM
+                <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-border bg-white p-1">
+                  <img
+                    src="/icon.jpeg"
+                    alt={firm.leadAdvocate.name}
+                    className="h-full w-full object-contain"
+                  />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
@@ -138,7 +140,7 @@ function Home() {
                     {firm.leadAdvocate.name}
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    {firm.leadAdvocate.yearsOfPractice}+ years · Kerala High Court
+                    {firm.leadAdvocate.yearsOfPractice}+ years · {firm.leadAdvocate.aibe}
                   </p>
                 </div>
               </div>
@@ -221,8 +223,8 @@ function Home() {
               },
               {
                 icon: Scale,
-                title: "Court-tested",
-                body: `${firm.leadAdvocate.yearsOfPractice}+ years of trial and appellate work across Kerala and Delhi.`,
+                title: "Compliance-expert",
+                body: `${firm.leadAdvocate.yearsOfPractice}+ years of auditing, tax filings, and representation before financial authorities.`,
               },
             ].map((f) => (
               <li key={f.title} className="bg-primary p-7">
@@ -292,11 +294,10 @@ function Home() {
           <div className="grid gap-8 border border-gold bg-card p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <h2 className="font-display text-3xl leading-tight text-primary sm:text-5xl">
-                Talk to an advocate today. The first 15 minutes are on us.
+                Talk to a partner today. The first 15 minutes are on us.
               </h2>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                Tell us your matter in plain language. We'll tell you honestly whether you need a
-                lawyer — and what it will cost.
+                Describe your financial or tax needs in plain language. We'll tell you honestly how we can help — and what it will cost.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
