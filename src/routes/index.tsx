@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Phone, Scale, ShieldCheck, MessageCircle, Star } from "lucide-react";
 import { firm, practiceAreas, testimonials, insights, reviews } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
@@ -54,13 +55,112 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const slides = [
+  {
+    image: "/images/hero-audit.png",
+    tagline: "Assurance & Auditing",
+    title: "Rigorous Standards. Absolute Integrity.",
+    description:
+      "Delivering world-class auditing, compliance, and corporate financial health reporting to foster absolute trust.",
+  },
+  {
+    image: "/images/hero-tax.png",
+    tagline: "Taxation & Regulatory",
+    title: "Navigating Complexity with Precision.",
+    description:
+      "Expert direct and indirect tax strategies, GST compliance, and NRI taxation structures customized for your needs.",
+  },
+  {
+    image: "/images/hero-advisory.png",
+    tagline: "Corporate Advisory",
+    title: "Strategic Growth. Compliant Foundations.",
+    description:
+      "Helping startups and established enterprises scale safely with robust corporate governance and corporate advisory.",
+  },
+];
+
 function Home() {
   const t = useT();
   const waHref = `https://wa.me/${firm.contact.whatsapp}`;
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div>
-      {/* HERO */}
+      {/* SLIDESHOW HERO */}
+      <section className="relative w-full overflow-hidden bg-navy-deep h-[500px] sm:h-[600px] lg:h-[650px] border-b border-border">
+        <AnimatePresence>
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0"
+          >
+            {/* Slide Image with Slow Zoom-in */}
+            <motion.img
+              key={currentSlide}
+              src={slides[currentSlide].image}
+              alt={slides[currentSlide].title}
+              initial={{ scale: 1.05, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+
+            {/* Blue Shadow/Tint Overlay for Seamless Integration */}
+            <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/90 via-navy/40 to-transparent mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-navy/15" />
+            <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(11,30,63,0.8)]" />
+
+            {/* Content Overlay - Grid Aligned */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-12 sm:pb-16 lg:pb-20 text-white">
+              <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="max-w-2xl"
+                >
+                  <span className="mb-4 inline-block text-xs uppercase tracking-[0.25em] text-gold font-medium">
+                    {slides[currentSlide].tagline}
+                  </span>
+                  <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight mb-4">
+                    {slides[currentSlide].title}
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-300 font-sans max-w-lg">
+                    {slides[currentSlide].description}
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dots / Indicators - Grid Aligned */}
+        <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 w-full max-w-7xl px-5 sm:px-8 flex justify-end gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentSlide === idx ? "w-8 bg-gold" : "w-2 bg-white/40 hover:bg-white/70"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* HERO DETAILS */}
       <section className="relative overflow-hidden bg-background">
         <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +172,7 @@ function Home() {
             <rect width="100%" height="100%" fill="url(#grid)" className="text-primary" />
           </svg>
         </div>
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-16 pb-20 sm:px-8 sm:pt-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pt-28 lg:pb-28">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:pt-20 lg:pb-24">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
