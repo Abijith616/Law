@@ -12,6 +12,7 @@ const navItems = [
   { to: "/practice-areas", label: ui.nav.practice, exact: false },
   { to: "/team", label: ui.nav.team, exact: false },
   { to: "/insights", label: ui.nav.insights, exact: false },
+  { to: "/careers", label: ui.nav.careers, exact: false },
   { to: "/contact", label: ui.nav.contact, exact: false },
 ] as const;
 

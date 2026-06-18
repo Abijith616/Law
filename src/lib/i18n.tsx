@@ -42,9 +42,10 @@ export const ui = {
   nav: {
     home: { en: "Home", ml: "ഹോം" },
     about: { en: "About", ml: "ഞങ്ങളെക്കുറിച്ച്" },
-    practice: { en: "Practice Areas", ml: "പ്രാക്ടീസ് മേഖലകൾ" },
+    practice: { en: "Services", ml: "സേവനങ്ങൾ" },
     team: { en: "Team", ml: "ടീം" },
     insights: { en: "Insights", ml: "ലേഖനങ്ങൾ" },
+    careers: { en: "Careers", ml: "ജോലി" },
     contact: { en: "Contact", ml: "ബന്ധപ്പെടുക" },
   },
   cta: {
@@ -52,11 +53,12 @@ export const ui = {
     whatsapp: { en: "WhatsApp Us", ml: "വാട്സ്ആപ്പിൽ ബന്ധപ്പെടുക" },
     call: { en: "Call Now", ml: "ഇപ്പോൾ വിളിക്കുക" },
     learnMore: { en: "Read more", ml: "കൂടുതൽ വായിക്കുക" },
-    allAreas: { en: "View all practice areas", ml: "എല്ലാ മേഖലകളും" },
+    allAreas: { en: "View all services", ml: "എല്ലാ സേവനങ്ങളും" },
     allInsights: { en: "All insights", ml: "എല്ലാ ലേഖനങ്ങളും" },
+    applyNow: { en: "Apply Now", ml: "അപേക്ഷിക്കുക" },
   },
   sections: {
-    practiceAreas: { en: "Practice Areas", ml: "പ്രാക്ടീസ് മേഖലകൾ" },
+    practiceAreas: { en: "Our Services", ml: "ഞങ്ങളുടെ സേവനങ്ങൾ" },
     whyUs: { en: "Why clients choose us", ml: "ക്ലയന്റുകൾ ഞങ്ങളെ തിരഞ്ഞെടുക്കുന്നത് എന്തുകൊണ്ട്" },
     testimonials: { en: "Client testimonials", ml: "ക്ലയന്റ് അഭിപ്രായങ്ങൾ" },
     insights: { en: "Recent Insights", ml: "സമീപകാല ലേഖനങ്ങൾ" },

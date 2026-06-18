@@ -172,6 +172,32 @@ export const practiceAreas: PracticeArea[] = [
       ml: "സാമ്പത്തിക പുനഃക്രമീകരണം, കമ്പനി ലിക്വിഡേഷൻ, NCLT കേസുകളിലെ പ്രതിനിധാനം.",
     },
   },
+  {
+    slug: "nri-taxation",
+    icon: "🌏",
+    title: { en: "NRI Taxation & FEMA Repatriation", ml: "NRI നികുതിയും FEMA റിപ്പേട്രിയേഷനും" },
+    short: {
+      en: "Income tax filing for NRIs, DTAA relief, repatriation of funds, and FEMA compliance for overseas Indians.",
+      ml: "NRI-കൾക്കുള്ള ആദായനികുതി ഫയലിംഗ്, DTAA ആനുകൂല്യം, ഫണ്ട് റിപ്പേട്രിയേഷൻ, FEMA കംപ്ലയൻസ്.",
+    },
+    body: {
+      en: "Comprehensive tax and compliance services tailored for Non-Resident Indians. We handle NRI income tax returns, tax residency certificates, Double Taxation Avoidance Agreement (DTAA) relief claims, repatriation of rental income and sale proceeds, NRO/NRE account advisory, and FEMA compliance filings. Kerala's large diaspora trusts us to manage their Indian financial affairs smoothly.",
+      ml: "NRI-കൾക്കായി ആദായനികുതി, FEMA, DTAA ക്ലെയിമുകൾ, NRO/NRE അക്കൗണ്ട് ഉപദേശം, ഫണ്ട് ട്രാൻസ്ഫർ സേവനങ്ങൾ.",
+    },
+  },
+  {
+    slug: "startup-advisory",
+    icon: "🚀",
+    title: { en: "Startup & MSME Advisory", ml: "സ്റ്റാർട്ടപ്പ് & MSME ഉപദേശം" },
+    short: {
+      en: "End-to-end advisory for new entrepreneurs — DPIIT startup recognition, Udyam registration, seed funding readiness, and business plan preparation.",
+      ml: "പുതിയ സംരംഭകർക്കായി DPIIT അംഗീകാരം, Udyam രജിസ്ട്രേഷൻ, ബിസിനസ്സ് പ്ലാൻ തയ്യാറാക്കൽ.",
+    },
+    body: {
+      en: "We guide first-time founders from idea to compliance. Services include DPIIT startup recognition, Udyam (MSME) registration, business plan and financial projection preparation, seed-round investor-ready documentation, government scheme advisory (MUDRA, CGTMSE), and ongoing compliance management so founders can focus on building.",
+      ml: "ആദ്യമായി ബിസിനസ്സ് ആരംഭിക്കുന്നവർക്കായി DPIIT, Udyam രജിസ്ട്രേഷൻ, ബിസിനസ്സ് പ്ലാൻ, ഗവൺമെന്റ് സ്കീം ഉപദേശം.",
+    },
+  },
 ];
 
 export const team: Advocate[] = [

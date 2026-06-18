@@ -62,6 +62,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/careers" className="hover:text-gold">
+                {t(ui.nav.careers)}
+              </Link>
+            </li>
+            <li>
               <Link to="/contact" className="hover:text-gold">
                 {t(ui.nav.contact)}
               </Link>

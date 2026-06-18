@@ -94,7 +94,7 @@ function AreaDetail() {
 
       <section className="border-t border-border bg-card">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-          <h2 className="font-display text-2xl text-primary">Other practice areas</h2>
+          <h2 className="font-display text-2xl text-primary">Other services</h2>
           <ul className="mt-6 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
             {others.map((p) => (
               <li key={p.slug} className="bg-background">

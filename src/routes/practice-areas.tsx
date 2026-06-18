@@ -7,16 +7,16 @@ import { PracticeCard } from "@/components/site/PracticeCard";
 export const Route = createFileRoute("/practice-areas")({
   head: () => ({
     meta: [
-      { title: `Practice Areas — ${firm.name}` },
+      { title: `Services — ${firm.name}` },
       {
         name: "description",
         content:
-          "Taxation & GST compliance, statutory audit, bookkeeping, company registration, corporate law, project reports, risk advisory, NCLT representation — handled by experienced partners.",
+          "Taxation & GST compliance, statutory audit, bookkeeping, company registration, NRI taxation, startup advisory, corporate law, project reports, risk advisory, NCLT representation — handled by experienced partners.",
       },
-      { property: "og:title", content: `Practice Areas — ${firm.name}` },
+      { property: "og:title", content: `Services — ${firm.name}` },
       {
         property: "og:description",
-        content: "Eight focused financial and compliance practices, handled personally by a partner.",
+        content: "Ten focused financial and compliance services, handled personally by a partner.",
       },
     ],
   }),
@@ -37,7 +37,7 @@ function PracticeAreasLayout() {
             <span className="h-px w-10 bg-gold" /> {t(ui.nav.practice)}
           </div>
           <h1 className="max-w-3xl font-display text-4xl leading-tight text-primary sm:text-6xl">
-            Eight specialist practices, one accountable partner per matter.
+            Ten specialist services, one accountable partner per matter.
           </h1>
         </div>
       </section>
