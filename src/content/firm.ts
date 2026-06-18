@@ -32,15 +32,15 @@ export const firm = {
   name: "JA & Associates Chartered Accountants",
   shortName: "JA & Associates",
   tagline: {
-    en: "Expert financial advice. Trustworthy auditing and taxation solutions.",
-    ml: "വിദഗ്ദ്ധ സാമ്പത്തിക ഉപദേശം. വിശ്വസനീയമായ ഓഡിറ്റിംഗും ടാക്സേഷൻ പരിഹാരങ്ങളും.",
+    en: "Precision in Compliance. Confidence in Every Decision.",
+    ml: "കംപ്ലയൻസിലെ കൃത്യത. ഓരോ തീരുമാനത്തിലും ആത്മവിശ്വാസം.",
   },
   established: 2012,
   city: { en: "Angamaly, Ernakulam, Kerala", ml: "അങ്കമാലി, എറണാകുളം, കേരളം" },
   leadAdvocate: {
     name: "Joseph Antony, FCA",
     barCouncilNo: "FRN 015234S", // Reusing this key to prevent breaking references in code
-    aibe: "M. No. 214532",       // Reusing this key to prevent breaking references in code
+    aibe: "M. No. 214532", // Reusing this key to prevent breaking references in code
     yearsOfPractice: 24,
   },
   contact: {
@@ -60,7 +60,8 @@ export const firm = {
     "National Company Law Tribunal (NCLT)",
     "Ministry of Corporate Affairs (MCA)",
   ],
-  mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2343881084224!2d76.3860002!3d10.1983056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08064cfb036cb5%3A0xe54d92ee242a9693!2sMenachery%20Plaza!5e0!3m2!1sen!2sin!4v1718610000000!5m2!1sen!2sin",
+  mapEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.2343881084224!2d76.3860002!3d10.1983056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08064cfb036cb5%3A0xe54d92ee242a9693!2sMenachery%20Plaza!5e0!3m2!1sen!2sin!4v1718610000000!5m2!1sen!2sin",
   consultation: {
     en: "Free 15-minute initial consultation",
     ml: "സൗജന്യ 15-മിനിറ്റ് പ്രാരംഭ ഉപദേശം",
@@ -136,7 +137,10 @@ export const practiceAreas: PracticeArea[] = [
   {
     slug: "project-reports",
     icon: "📈",
-    title: { en: "Project Reports & Loan Syndication", ml: "പ്രൊജക്റ്റ് റിപ്പോർട്ടുകൾ & ലോൺ ഫെസിലിറ്റേഷൻ" },
+    title: {
+      en: "Project Reports & Loan Syndication",
+      ml: "പ്രൊജക്റ്റ് റിപ്പോർട്ടുകൾ & ലോൺ ഫെസിലിറ്റേഷൻ",
+    },
     short: {
       en: "Detailed project report drafting, CMA data preparation, and bank loan coordination.",
       ml: "പ്രൊജക്റ്റ് റിപ്പോർട്ടുകൾ, CMA ഡാറ്റ തയ്യാറാക്കൽ, ബാങ്ക് ലോൺ ഏകോപനം.",
@@ -196,6 +200,32 @@ export const practiceAreas: PracticeArea[] = [
     body: {
       en: "We guide first-time founders from idea to compliance. Services include DPIIT startup recognition, Udyam (MSME) registration, business plan and financial projection preparation, seed-round investor-ready documentation, government scheme advisory (MUDRA, CGTMSE), and ongoing compliance management so founders can focus on building.",
       ml: "ആദ്യമായി ബിസിനസ്സ് ആരംഭിക്കുന്നവർക്കായി DPIIT, Udyam രജിസ്ട്രേഷൻ, ബിസിനസ്സ് പ്ലാൻ, ഗവൺമെന്റ് സ്കീം ഉപദേശം.",
+    },
+  },
+  {
+    slug: "valuation-advisory",
+    icon: "🔍",
+    title: { en: "Valuation & Financial Advisory", ml: "വാല്യൂവേഷൻ & ഫിനാൻഷ്യൽ അഡ്വൈസറി" },
+    short: {
+      en: "Professional business valuations, asset valuations, and financial due diligence for transactions.",
+      ml: "ബിസിനസ്സ് മൂല്യനിർണ്ണയം, അസറ്റ് വാല്യൂവേഷൻ, സാമ്പത്തിക പരിശോധന സേവനങ്ങൾ.",
+    },
+    body: {
+      en: "We provide independent valuation services under the Companies Act, Income Tax Act, and Insolvency and Bankruptcy Code (IBC). Our reports support mergers, acquisitions, joint ventures, and regulatory compliances.",
+      ml: "കമ്പനീസ് ആക്ട്, ആദായനികുതി നിയമം എന്നിവയ്ക്ക് കീഴിലുള്ള ബിസിനസ്സ് മൂല്യനിർണ്ണയവും പരിശോധനയും.",
+    },
+  },
+  {
+    slug: "customs-ftp",
+    icon: "🌐",
+    title: { en: "Customs & Foreign Trade", ml: "കസ്റ്റംസ് & വിദേശ വ്യാപാരം" },
+    short: {
+      en: "Import-export registrations, customs compliance, and foreign trade policy advisory.",
+      ml: "ഇറക്കുമതി-കയറ്റുമതി രജിസ്ട്രേഷനുകൾ, കസ്റ്റംസ് കംപ്ലയൻസ്, വ്യാപാര ഉപദേശം.",
+    },
+    body: {
+      en: "Advising on import-export regulations, customs duties, and export incentives under the Foreign Trade Policy. We assist in obtaining Import Export Codes (IEC), setting up SEZ/STPI units, and representation before the DGFT.",
+      ml: "വിദേശ വ്യാപാര നയം, ഇറക്കുമതി-കയറ്റുമതി കോഡുകൾ, SEZ/STPI യൂണിറ്റ് സ്ഥാപിക്കൽ എന്നിവയ്ക്കുള്ള സഹായം.",
     },
   },
 ];

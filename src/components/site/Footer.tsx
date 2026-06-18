@@ -12,11 +12,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-3">
             <div className="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-ivory p-1">
-              <img
-                src="/icon-transparent.png"
-                alt=""
-                className="h-full w-full object-contain"
-              />
+              <img src="/icon-transparent.png" alt="" className="h-full w-full object-contain" />
             </div>
             <span className="font-display text-xl text-ivory font-semibold">{firm.shortName}</span>
           </div>
@@ -109,8 +105,9 @@ export function Footer() {
             © {year} {firm.name}. All rights reserved.
           </p>
           <p className="max-w-xl text-[11px] leading-relaxed">
-            As per Institute of Chartered Accountants of India (ICAI) guidelines, this website is for informational purposes only and
-            does not constitute solicitation, advertisement or professional advice.
+            As per Institute of Chartered Accountants of India (ICAI) guidelines, this website is
+            for informational purposes only and does not constitute solicitation, advertisement or
+            professional advice.
           </p>
         </div>
       </div>

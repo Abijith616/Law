@@ -17,11 +17,14 @@ export const Route = createFileRoute("/")({
         content:
           "Professional Chartered Accountant firm in Angamaly, Ernakulam, Kerala. Expert auditing, taxation, GST compliance, company registration, and corporate financial advisory.",
       },
-      { property: "og:title", content: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam` },
+      {
+        property: "og:title",
+        content: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam`,
+      },
       {
         property: "og:description",
         content:
-          "Expert financial advice. Trustworthy auditing and taxation solutions. Free 15-minute consultation, direct WhatsApp access.",
+          "Precision in Compliance. Confidence in Every Decision. Free 15-minute consultation, direct WhatsApp access.",
       },
     ],
     scripts: [
@@ -80,12 +83,13 @@ function Home() {
               Est. {firm.established} · {t(firm.city)}
             </div>
             <h1 className="font-display text-[2.6rem] leading-[1.05] text-primary sm:text-6xl md:text-7xl">
-              Financial advice you can <span className="italic text-gold">trust</span>.
+              Precision in <span className="italic text-gold">Compliance</span>.
               <br className="hidden sm:block" />
-              Solutions you can count on.
+              Confidence in Every Decision.
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
-              A professional Chartered Accountant firm representing individuals and businesses across GST compliance, tax filings, audits, and company incorporation. Plain advice, transparent fees, direct access.
+              Professional accounting, taxation, audit, and corporate advisory services backed by
+              experience and integrity.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -174,7 +178,7 @@ function Home() {
         <SectionHeading
           eyebrow={t(ui.sections.practiceAreas)}
           title="Specialist counsel across the matters that affect Kerala the most."
-          subtitle="Eight focused practice areas. Each handled personally by a partner with deep court-room experience."
+          subtitle="Twelve focused services. Each handled personally by a partner with deep experience."
         />
         <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
           {practiceAreas.map((p) => (
@@ -297,7 +301,8 @@ function Home() {
                 Talk to a partner today. The first 15 minutes are on us.
               </h2>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                Describe your financial or tax needs in plain language. We'll tell you honestly how we can help — and what it will cost.
+                Describe your financial or tax needs in plain language. We'll tell you honestly how
+                we can help — and what it will cost.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">

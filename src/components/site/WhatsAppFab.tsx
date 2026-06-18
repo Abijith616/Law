@@ -28,7 +28,10 @@ export function WhatsAppFab() {
   )}`;
 
   return (
-    <div ref={containerRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end sm:bottom-8 sm:right-8">
+    <div
+      ref={containerRef}
+      className="fixed bottom-5 right-5 z-50 flex flex-col items-end sm:bottom-8 sm:right-8"
+    >
       {/* Secondary Buttons Menu */}
       <div
         className={`mb-4 flex flex-col items-end gap-3 transition-all duration-300 ease-out ${

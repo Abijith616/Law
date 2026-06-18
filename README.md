@@ -39,4 +39,5 @@ npm run build
 ```
 
 This project is not a Next.js App Router project; it uses TanStack Start, which is also a production SSR React framework.
+
 # Law

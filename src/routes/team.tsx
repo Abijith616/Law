@@ -8,7 +8,8 @@ export const Route = createFileRoute("/team")({
       { title: `Our Team — ${firm.name}` },
       {
         name: "description",
-        content: "Meet the partners and associates at JA & Associates Chartered Accountants, Angamaly.",
+        content:
+          "Meet the partners and associates at JA & Associates Chartered Accountants, Angamaly.",
       },
       { property: "og:title", content: `Our Team — ${firm.name}` },
       {

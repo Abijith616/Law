@@ -116,7 +116,9 @@ function About() {
                   </dd>
                 </div>
               </dl>
-              <h3 className="mt-10 font-display text-xl text-primary">Appellate Tribunals & Forums</h3>
+              <h3 className="mt-10 font-display text-xl text-primary">
+                Appellate Tribunals & Forums
+              </h3>
               <ul className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
                 {firm.courts.map((c) => (
                   <li key={c} className="flex items-center gap-2">

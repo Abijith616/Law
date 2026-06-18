@@ -16,7 +16,8 @@ export const Route = createFileRoute("/practice-areas")({
       { property: "og:title", content: `Services — ${firm.name}` },
       {
         property: "og:description",
-        content: "Ten focused financial and compliance services, handled personally by a partner.",
+        content:
+          "Twelve focused financial and compliance services, handled personally by a partner.",
       },
     ],
   }),
@@ -37,7 +38,7 @@ function PracticeAreasLayout() {
             <span className="h-px w-10 bg-gold" /> {t(ui.nav.practice)}
           </div>
           <h1 className="max-w-3xl font-display text-4xl leading-tight text-primary sm:text-6xl">
-            Ten specialist services, one accountable partner per matter.
+            Twelve specialist services, one accountable partner per matter.
           </h1>
         </div>
       </section>

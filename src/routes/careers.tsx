@@ -120,7 +120,13 @@ const culturePoints = [
   },
 ];
 
-function OpeningCard({ opening, formRef }: { opening: (typeof openings)[0]; formRef: React.RefObject<HTMLDivElement | null> }) {
+function OpeningCard({
+  opening,
+  formRef,
+}: {
+  opening: (typeof openings)[0];
+  formRef: React.RefObject<HTMLDivElement | null>;
+}) {
   const [expanded, setExpanded] = useState(false);
   const Icon = opening.icon;
 
@@ -172,7 +178,9 @@ function OpeningCard({ opening, formRef }: { opening: (typeof openings)[0]; form
         <div className="border-t border-border px-7 pb-7 pt-5">
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What we need</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                What we need
+              </p>
               <ul className="mt-3 space-y-2">
                 {opening.requirements.map((r) => (
                   <li key={r} className="flex items-start gap-2 text-sm text-foreground">
@@ -183,7 +191,9 @@ function OpeningCard({ opening, formRef }: { opening: (typeof openings)[0]; form
               </ul>
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">What you get</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                What you get
+              </p>
               <ul className="mt-3 space-y-2">
                 {opening.perks.map((p) => (
                   <li key={p} className="flex items-start gap-2 text-sm text-foreground">
@@ -211,6 +221,7 @@ function Careers() {
   const t = useT();
   const formRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -224,7 +235,7 @@ function Careers() {
     const roleLabel = openings.find((o) => o.id === role)?.title ?? role;
     const subject = encodeURIComponent(`Career Application — ${roleLabel} — ${name}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nRole: ${roleLabel}\n\nMessage:\n${message}`
+      `Name: ${name}\nPhone: ${phone}\nRole: ${roleLabel}\nSelected Resume File: ${fileName || "Not provided"}\n\nMessage:\n${message}`,
     );
 
     window.location.href = `mailto:${firm.contact.email}?subject=${subject}&body=${body}`;
@@ -256,8 +267,7 @@ function Careers() {
               {t(ui.nav.careers)} · {t(firm.city)}
             </div>
             <h1 className="max-w-4xl font-display text-4xl leading-[1.05] sm:text-6xl md:text-7xl">
-              Grow your career where{" "}
-              <span className="italic text-gold">every file matters.</span>
+              Grow your career where <span className="italic text-gold">every file matters.</span>
             </h1>
             <p className="mt-6 max-w-xl text-primary-foreground/75 sm:text-lg">
               We're a mid-sized CA firm in Angamaly with a strong practice in GST, audit, and
@@ -266,7 +276,9 @@ function Careers() {
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 type="button"
-                onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                onClick={() =>
+                  formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
                 className="inline-flex items-center gap-2 bg-gold px-6 py-3.5 text-sm font-medium uppercase tracking-[0.18em] text-primary transition hover:brightness-105"
               >
                 See open positions <ArrowRight className="h-4 w-4" />
@@ -317,7 +329,9 @@ function Careers() {
             Don't see a role that fits?{" "}
             <button
               type="button"
-              onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+              onClick={() =>
+                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
               className="font-medium text-primary hover:text-gold underline"
             >
               Send us a general application
@@ -333,7 +347,7 @@ function Careers() {
           <SectionHeading
             eyebrow="Apply"
             title="Send your application."
-            subtitle="Fill in the details below and your default email client will open with your application pre-filled. Attach your resume in the email before sending."
+            subtitle="Fill in the details below, select your CV/resume, and your default email client will open with your pre-filled application."
           />
 
           {submitted ? (
@@ -346,7 +360,7 @@ function Careers() {
               <h3 className="mt-4 font-display text-2xl text-primary">Application ready!</h3>
               <p className="mt-2 text-muted-foreground">
                 Your email client has been opened with your application pre-filled. Please attach
-                your CV/resume before hitting send.
+                your CV/resume {fileName ? <strong>({fileName})</strong> : ""} before hitting send.
               </p>
               <p className="mt-4 text-sm text-muted-foreground">
                 We aim to respond to all applications within 5 working days.
@@ -356,7 +370,10 @@ function Careers() {
             <form onSubmit={handleSubmit} className="mt-12 grid gap-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="careers-name" className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                  <label
+                    htmlFor="careers-name"
+                    className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -369,7 +386,10 @@ function Careers() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="careers-phone" className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                  <label
+                    htmlFor="careers-phone"
+                    className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                  >
                     Phone Number *
                   </label>
                   <input
@@ -384,7 +404,10 @@ function Careers() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="role-select" className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <label
+                  htmlFor="role-select"
+                  className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                >
                   Role You're Applying For *
                 </label>
                 <select
@@ -407,7 +430,10 @@ function Careers() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="careers-message" className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                <label
+                  htmlFor="careers-message"
+                  className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                >
                   Cover Note *
                 </label>
                 <textarea
@@ -420,9 +446,47 @@ function Careers() {
                 />
               </div>
 
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="careers-resume"
+                  className="text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                >
+                  Upload Resume / CV *
+                </label>
+                <div className="relative flex items-center border border-border bg-background hover:border-primary transition">
+                  <input
+                    id="careers-resume"
+                    name="resume"
+                    type="file"
+                    required
+                    accept=".pdf,.doc,.docx"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      setFileName(file ? file.name : "");
+                    }}
+                  />
+                  <div className="flex w-full items-center justify-between px-4 py-3 text-sm">
+                    <span
+                      className={fileName ? "text-foreground font-medium" : "text-muted-foreground"}
+                    >
+                      {fileName || "Select PDF, DOC, or DOCX file…"}
+                    </span>
+                    <span className="bg-primary/10 px-3 py-1 text-xs font-medium text-primary uppercase tracking-wider">
+                      Browse
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <div className="rounded-sm border border-border/60 bg-card px-4 py-3 text-xs text-muted-foreground">
-                <strong className="text-foreground">Note:</strong> Clicking "Submit Application" will open your email client with your details pre-filled.
-                Please <strong className="text-foreground">attach your CV/resume</strong> as a PDF to the email before sending.
+                <strong className="text-foreground">Note:</strong> Clicking "Submit Application"
+                will open your email client with your details pre-filled. Please remember to
+                manually{" "}
+                <strong className="text-foreground">
+                  attach your selected CV/resume file {fileName ? `(${fileName})` : ""}
+                </strong>{" "}
+                to the email before sending.
               </div>
 
               <button
@@ -437,11 +501,17 @@ function Careers() {
           <div className="mt-10 border-t border-border pt-8 text-sm text-muted-foreground">
             <p>
               Have questions before applying?{" "}
-              <a href={`mailto:${firm.contact.email}`} className="font-medium text-primary hover:text-gold">
+              <a
+                href={`mailto:${firm.contact.email}`}
+                className="font-medium text-primary hover:text-gold"
+              >
                 {firm.contact.email}
               </a>{" "}
               or call us at{" "}
-              <a href={`tel:${firm.contact.phoneHref}`} className="font-medium text-primary hover:text-gold">
+              <a
+                href={`tel:${firm.contact.phoneHref}`}
+                className="font-medium text-primary hover:text-gold"
+              >
                 {firm.contact.phone}
               </a>
               .
