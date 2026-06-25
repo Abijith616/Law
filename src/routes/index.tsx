@@ -228,40 +228,63 @@ function Home() {
               <div className="absolute -top-3 left-8 bg-gold px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
                 {t(firm.consultation)}
               </div>
-              <div className="flex items-start gap-5">
-                <div className="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-border bg-white p-1">
-                  <img
-                    src="/icon.jpeg"
-                    alt={firm.leadAdvocate.name}
-                    className="h-full w-full object-contain"
-                  />
+              <div className="flex flex-col gap-5">
+                {/* Jibin Jose */}
+                <div className="flex items-start gap-4">
+                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/10 border border-primary/20 font-display text-xl text-primary font-bold">
+                    JJ
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-gold font-semibold">
+                      {t(ui.sections.leadAdvocate)}
+                    </p>
+                    <p className="mt-0.5 font-display text-lg text-primary font-semibold">
+                      Jibin Jose, FCA
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      12+ years · M. No. [M. No.]
+                    </p>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {t(ui.sections.leadAdvocate)}
-                  </p>
-                  <p className="mt-1 font-display text-2xl text-primary">
-                    {firm.leadAdvocate.name}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {firm.leadAdvocate.yearsOfPractice}+ years · {firm.leadAdvocate.aibe}
-                  </p>
+                {/* Divider */}
+                <div className="h-px bg-border/60" />
+                {/* Anoop Antony */}
+                <div className="flex items-start gap-4">
+                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/10 border border-primary/20 font-display text-xl text-primary font-bold">
+                    AA
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-gold font-semibold">
+                      Lead Partner
+                    </p>
+                    <p className="mt-0.5 font-display text-lg text-primary font-semibold">
+                      Anoop Antony, FCA
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      12+ years · M. No. 238806
+                    </p>
+                  </div>
                 </div>
               </div>
-              <ul className="mt-8 grid gap-3 text-sm">
-                {firm.courts.slice(0, 3).map((c) => (
-                  <li
-                    key={c}
-                    className="flex items-center gap-3 border-b border-border/60 pb-3 last:border-b-0"
-                  >
-                    <Scale className="h-4 w-4 text-gold" aria-hidden />
-                    <span className="text-foreground">{c}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3 font-semibold">
+                  {t(ui.sections.courts)}
+                </p>
+                <ul className="grid gap-2 text-sm">
+                  {firm.courts.map((c) => (
+                    <li
+                      key={c}
+                      className="flex items-center gap-3"
+                    >
+                      <ShieldCheck className="h-4 w-4 text-gold shrink-0" aria-hidden />
+                      <span className="text-foreground text-xs font-medium">{c}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <a
                 href={`tel:${firm.contact.phoneHref}`}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-navy-deep"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-navy-deep transition"
               >
                 <Phone className="h-4 w-4" />
                 {firm.contact.phone}

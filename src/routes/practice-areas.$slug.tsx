@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { firm, practiceAreas } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
+import { PracticeIcon } from "@/components/site/PracticeIcon";
 
 export const Route = createFileRoute("/practice-areas/$slug")({
   loader: ({ params }) => {
@@ -51,8 +52,8 @@ function AreaDetail() {
           >
             <ArrowLeft className="h-4 w-4" /> {t(ui.nav.practice)}
           </Link>
-          <div className="mt-6 text-4xl" aria-hidden>
-            {area.icon}
+          <div className="mt-6" aria-hidden>
+            <PracticeIcon name={area.icon} className="h-12 w-12 text-gold" />
           </div>
           <h1 className="mt-4 font-display text-4xl leading-tight text-primary sm:text-6xl">
             {t(area.title)}

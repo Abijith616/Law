@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { PracticeArea } from "@/content/firm";
 import { useT } from "@/lib/i18n";
+import { PracticeIcon } from "./PracticeIcon";
 
 export function PracticeCard({ area }: { area: PracticeArea }) {
   const t = useT();
@@ -12,8 +13,8 @@ export function PracticeCard({ area }: { area: PracticeArea }) {
       className="group relative flex h-full flex-col justify-between gap-6 border-t-2 border-gold bg-card p-6 transition hover:bg-primary hover:text-primary-foreground sm:p-8"
     >
       <div>
-        <div className="text-3xl" aria-hidden>
-          {area.icon}
+        <div aria-hidden>
+          <PracticeIcon name={area.icon} className="h-8 w-8 text-gold transition group-hover:text-gold" />
         </div>
         <h3 className="mt-5 font-display text-2xl leading-snug text-primary transition group-hover:text-primary-foreground">
           {t(area.title)}

@@ -63,6 +63,6 @@ export const ui = {
     testimonials: { en: "Client testimonials", ml: "ക്ലയന്റ് അഭിപ്രായങ്ങൾ" },
     insights: { en: "Recent Insights", ml: "സമീപകാല ലേഖനങ്ങൾ" },
     leadAdvocate: { en: "Lead Partner", ml: "മുഖ്യ പങ്കാളി" },
-    courts: { en: "Appellate Tribunals", ml: "ഞങ്ങൾ ഹാജരാകുന്ന ട്രൈബ്യൂണലുകൾ" },
+    courts: { en: "Areas of Expertise", ml: "പ്രധാന പ്രവർത്തന മേഖലകൾ" },
   },
 } as const;

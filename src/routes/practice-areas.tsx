@@ -50,21 +50,6 @@ function PracticeAreasLayout() {
           ))}
         </div>
       </section>
-
-      <section className="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-        <SectionHeading
-          eyebrow="Appellate Tribunals & MCA"
-          title="Representing clients before taxation and corporate tribunals."
-        />
-        <ul className="mt-8 grid gap-3 text-base text-foreground sm:grid-cols-2">
-          {firm.courts.map((c) => (
-            <li key={c} className="flex items-center gap-3 border-b border-border pb-3">
-              <span className="h-1.5 w-6 bg-gold" />
-              {c}
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }
