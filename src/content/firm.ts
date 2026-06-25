@@ -39,7 +39,7 @@ export const firm = {
   city: { en: "Angamaly, Ernakulam, Kerala", ml: "അങ്കമാലി, എറണാകുളം, കേരളം" },
   leadAdvocate: {
     name: "Jibin Jose, FCA",
-    barCouncilNo: "FRN 028551S", // Reusing this key to prevent breaking references in code
+    barCouncilNo: "028551S", // Reusing this key to prevent breaking references in code
     aibe: "M. No. [M. No.]", // Reusing this key to prevent breaking references in code
     yearsOfPractice: 12,
   },
@@ -87,11 +87,11 @@ export const practiceAreas: PracticeArea[] = [
     icon: "tax-litigation",
     title: { en: "Tax Litigation & Representation", ml: "നികുതി വ്യവഹാരവും പ്രാതിനിധ്യവും" },
     short: {
-      en: "Strategic advisory and representation before tax authorities and appellate tribunals for direct and indirect taxes.",
-      ml: "നികുതി അതോറിറ്റികൾക്കും അപ്പീലുകൾക്കും മുന്നിലുള്ള കേസ് പ്രാതിനിധ്യം.",
+      en: "Strategic advisory and representation before tax authorities for direct and indirect taxes.",
+      ml: "നികുതി അതോറിറ്റികൾക്ക് മുന്നിലുള്ള കേസ് പ്രാതിനിധ്യം.",
     },
     body: {
-      en: "Representing clients before the Income Tax Department, GST authorities, and Appellate Tribunals. We assist in resolving complex tax disputes, replying to show-cause notices, and representing assessments.",
+      en: "Representing clients before the Income Tax Department and GST authorities. We assist in resolving complex tax disputes, replying to show-cause notices, and representing assessments.",
       ml: "ആദായനികുതി വകുപ്പ്, GST അതോറിറ്റികൾ എന്നിവയ്ക്ക് മുന്നിൽ കേസുകൾ ഫലപ്രദമായി വാദിക്കുന്നു.",
     },
   },

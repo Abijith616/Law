@@ -56,7 +56,7 @@ function About() {
             </div>
             <div className="max-w-none text-muted-foreground space-y-6 text-sm leading-relaxed">
               <p>
-                <strong>J A & Associates</strong> was established in 2024 following the strategic merger of two established chartered accountancy practices: <strong>J Jose & Associates</strong> (founded by CA Jibin Jose, FCA in Kottayam) and <strong>Anoop Antony & Co.</strong> (founded by CA Anoop Antony, FCA in Kozhikode). By combining their regional strengths and cumulative decades of experience, the partners established a unified, high-standard professional practice.
+                <strong>J A & Associates</strong> was established in 2024 following the strategic merger of two established chartered accountancy practices: <strong>J Jose & Associates</strong> (founded by CA Jibin Jose, FCA in Kanjirappally, Kottayam) and <strong>Anoop Antony & Co.</strong> (founded by CA Anoop Antony, FCA in Kozhikode). By combining their regional strengths and cumulative decades of experience, the partners established a unified, high-standard professional practice.
               </p>
               <p>
                 To complement the core chartered accountancy services, our management consulting vertical is operated through <strong>J A Business Consultants Private Limited</strong>, an ICAI-registered Management Consultancy Services (MCS) Company bearing Firm Registration No. <strong>MCS000010S</strong>.
@@ -77,16 +77,31 @@ function About() {
               <Eye className="h-6 w-6 text-gold" /> Our Vision
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              To be the most trusted and value-driven professional services firm, recognized for integrity, excellence, and tech-enabled business solutions that foster long-term client growth.
+              To be a trusted professional partner delivering innovative financial, regulatory, and strategic solutions that create lasting value for businesses.
             </p>
           </div>
           <div className="border border-border p-8 bg-card shadow-sm relative overflow-hidden">
             <h3 className="font-display text-2xl text-primary mb-4 flex items-center gap-3">
               <Target className="h-6 w-6 text-gold" /> Our Mission
             </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              To deliver practical, high-quality, and compliant financial, taxation, and consulting services. We empower businesses from startups to established corporates with strategic clarity and operational efficiency.
-            </p>
+            <ul className="space-y-3 text-muted-foreground text-sm leading-relaxed">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span>Deliver professional services with integrity, quality, and independence.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span>Build long-term relationships based on trust and transparency.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span>Provide practical, technology-driven solutions for modern businesses.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                <span>Support entrepreneurs and organizations in achieving sustainable growth through sound financial and strategic advice.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
