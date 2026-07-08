@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Phone, Scale, ShieldCheck, MessageCircle, Star } from "lucide-react";
-import { firm, practiceAreas, testimonials, insights, reviews } from "@/content/firm";
+import { firm, team, practiceAreas, testimonials, insights, reviews } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { PracticeCard } from "@/components/site/PracticeCard";
@@ -224,72 +224,80 @@ function Home() {
             transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative border border-border bg-card p-8 shadow-[0_30px_60px_-30px_rgba(11,30,63,0.35)]">
-              <div className="absolute -top-3 left-8 bg-gold px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
-                {t(firm.consultation)}
-              </div>
-              <div className="flex flex-col gap-5">
-                {/* Jibin Jose */}
-                <div className="flex items-start gap-4">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/10 border border-primary/20 font-display text-xl text-primary font-bold">
-                    JJ
+            {(() => {
+              const partners = [
+                {
+                  name: "Jibin Jose, FCA",
+                  initials: "JJ",
+                  role: t(ui.sections.leadAdvocate),
+                  years: "12+ years",
+                  membershipNo: "[M. No.]",
+                  phone: team[0].phone,
+                  phoneHref: team[0].phoneHref,
+                },
+                {
+                  name: "Anoop Antony, FCA",
+                  initials: "AA",
+                  role: "Lead Partner",
+                  years: "12+ years",
+                  membershipNo: "238806",
+                  phone: team[1].phone,
+                  phoneHref: team[1].phoneHref,
+                },
+              ];
+
+              return (
+                <div className="relative border border-border bg-card p-8 shadow-[0_30px_60px_-30px_rgba(11,30,63,0.35)]">
+                  <div className="absolute -top-3 left-8 bg-gold px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
+                    {t(firm.consultation)}
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-gold font-semibold">
-                      {t(ui.sections.leadAdvocate)}
+                  <div className="flex flex-col gap-5">
+                    {partners.map((partner, index) => (
+                      <div key={partner.name}>
+                        <div className="flex items-start gap-4">
+                          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-primary/20 bg-primary/10 font-display text-xl font-bold text-primary">
+                            {partner.initials}
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
+                              {partner.role}
+                            </p>
+                            <p className="mt-0.5 font-display text-lg font-semibold text-primary">
+                              {partner.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {partner.years} · M. No. {partner.membershipNo}
+                            </p>
+                            <p className="mt-1 text-xs font-medium text-primary">{partner.phone}</p>
+                            <a
+                              href={`tel:${partner.phoneHref}`}
+                              className="mt-3 inline-flex items-center justify-center gap-2 bg-primary px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-primary-foreground transition hover:bg-navy-deep"
+                            >
+                              <Phone className="h-3.5 w-3.5" />
+                              {partner.phone}
+                            </a>
+                          </div>
+                        </div>
+                        {index === 0 ? <div className="my-5 h-px bg-border/60" /> : null}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 border-t border-border pt-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3 font-semibold">
+                      {t(ui.sections.courts)}
                     </p>
-                    <p className="mt-0.5 font-display text-lg text-primary font-semibold">
-                      Jibin Jose, FCA
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      12+ years · M. No. [M. No.]
-                    </p>
+                    <ul className="grid gap-2 text-sm">
+                      {firm.courts.map((c) => (
+                        <li key={c} className="flex items-center gap-3">
+                          <ShieldCheck className="h-4 w-4 text-gold shrink-0" aria-hidden />
+                          <span className="text-foreground text-xs font-medium">{c}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                {/* Divider */}
-                <div className="h-px bg-border/60" />
-                {/* Anoop Antony */}
-                <div className="flex items-start gap-4">
-                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/10 border border-primary/20 font-display text-xl text-primary font-bold">
-                    AA
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-gold font-semibold">
-                      Lead Partner
-                    </p>
-                    <p className="mt-0.5 font-display text-lg text-primary font-semibold">
-                      Anoop Antony, FCA
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      12+ years · M. No. 238806
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3 font-semibold">
-                  {t(ui.sections.courts)}
-                </p>
-                <ul className="grid gap-2 text-sm">
-                  {firm.courts.map((c) => (
-                    <li
-                      key={c}
-                      className="flex items-center gap-3"
-                    >
-                      <ShieldCheck className="h-4 w-4 text-gold shrink-0" aria-hidden />
-                      <span className="text-foreground text-xs font-medium">{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <a
-                href={`tel:${firm.contact.phoneHref}`}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 bg-primary py-3 text-sm font-medium text-primary-foreground hover:bg-navy-deep transition"
-              >
-                <Phone className="h-4 w-4" />
-                {firm.contact.phone}
-              </a>
-            </div>
+              );
+            })()}
           </motion.aside>
         </div>
       </section>
@@ -304,7 +312,7 @@ function Home() {
           subtitle="Twelve focused services. Each handled personally by a partner with deep experience."
         />
         <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {practiceAreas.map((p) => (
+          {practiceAreas.slice(0, 4).map((p) => (
             <PracticeCard key={p.slug} area={p} />
           ))}
         </div>

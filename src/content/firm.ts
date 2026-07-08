@@ -15,6 +15,8 @@ export type Advocate = {
   bio: Bi;
   initials: string;
   years: number;
+  phone: string;
+  phoneHref: string;
 };
 
 export type Testimonial = { quote: Bi; author: string; matter: Bi };
@@ -231,6 +233,8 @@ export const team: Advocate[] = [
   {
     name: "Jibin Jose, FCA",
     initials: "JJ",
+    phone: "+91 9652 633 511",
+    phoneHref: "+919652633511",
     role: { en: "Lead Partner | Chartered Accountant", ml: "മുഖ്യ പങ്കാളി | ചാർട്ടേഡ് അക്കൗണ്ടന്റ്" },
     bio: {
       en: "Established J Jose & Associates in Kanjirappally, Kottayam, developing extensive expertise in audit, taxation, and business advisory before co-founding J A & Associates.",
@@ -241,6 +245,8 @@ export const team: Advocate[] = [
   {
     name: "Anoop Antony, FCA",
     initials: "AA",
+    phone: "+91 9746 177 541",
+    phoneHref: "+919746177541",
     role: { en: "Lead Partner | Chartered Accountant", ml: "മുഖ്യ പങ്കാളി | ചാർട്ടേഡ് അക്കൗണ്ടന്റ്" },
     bio: {
       en: "Founded Anoop Antony & Co. in Kozhikode. Expert in tax litigation, business valuation, Virtual CFO, and management audits.",

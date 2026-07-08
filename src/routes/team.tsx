@@ -46,6 +46,7 @@ function Team() {
               <div className="mt-5">
                 <h3 className="font-display text-xl text-primary">{m.name}</h3>
                 <p className="text-xs uppercase tracking-[0.18em] text-gold">{t(m.role)}</p>
+                <p className="mt-2 text-sm font-medium text-primary">{m.phone}</p>
                 <p className="mt-3 text-sm text-muted-foreground">{t(m.bio)}</p>
                 <p className="mt-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                   {m.years} years of practice
