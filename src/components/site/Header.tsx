@@ -30,7 +30,7 @@ export function Header() {
               {firm.shortName}
             </span>
             <span className="block truncate text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              Chartered Accountants · Est. {firm.established}
+              {t(ui.header.subtitle)} {firm.established}
             </span>
           </span>
         </Link>

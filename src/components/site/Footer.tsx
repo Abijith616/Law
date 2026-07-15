@@ -40,7 +40,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="font-display text-base text-gold">Firm</h4>
+          <h4 className="font-display text-base text-gold">{t(ui.footer.firmTitle)}</h4>
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/80">
             <li>
               <Link to="/about" className="hover:text-gold">
@@ -85,7 +85,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp · {firm.contact.phone}
+                {t(ui.footer.whatsappPrefix)}{firm.contact.phone}
               </a>
             </li>
             <li>
@@ -102,12 +102,10 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
-            © {year} {firm.name}. All rights reserved.
+            © {year} {firm.name}. {t(ui.footer.rightsReserved)}
           </p>
           <p className="max-w-xl text-[11px] leading-relaxed">
-            As per Institute of Chartered Accountants of India (ICAI) guidelines, this website is
-            for informational purposes only and does not constitute solicitation, advertisement or
-            professional advice.
+            {t(ui.footer.disclaimer)}
           </p>
         </div>
       </div>

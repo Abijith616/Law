@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Phone, Scale, ShieldCheck, MessageCircle, Star } from "lucide-react";
 import { firm, team, practiceAreas, testimonials, insights, reviews } from "@/content/firm";
-import { useT, ui } from "@/lib/i18n";
+import { useT, ui, useLocale } from "@/lib/i18n";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { PracticeCard } from "@/components/site/PracticeCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
@@ -58,29 +58,36 @@ export const Route = createFileRoute("/")({
 const slides = [
   {
     image: "/images/hero-audit.png",
-    tagline: "Assurance & Auditing",
-    title: "Rigorous Standards. Absolute Integrity.",
-    description:
-      "Delivering world-class auditing, compliance, and corporate financial health reporting to foster absolute trust.",
+    tagline: { en: "Assurance & Auditing", ml: "ഓഡിറ്റും അഷ്വറൻസും" },
+    title: { en: "Rigorous Standards. Absolute Integrity.", ml: "കർശനമായ മാനദണ്ഡങ്ങൾ. പൂർണ്ണമായ സമഗ്രത." },
+    description: {
+      en: "Delivering world-class auditing, compliance, and corporate financial health reporting to foster absolute trust.",
+      ml: "പൂർണ്ണമായ വിശ്വാസം വളർത്തിയെടുക്കുന്നതിന് ലോകോത്തര നിലവാരത്തിലുള്ള ഓഡിറ്റിംഗും റിപ്പോർട്ടിംഗും നൽകുന്നു.",
+    },
   },
   {
     image: "/images/hero-tax.png",
-    tagline: "Taxation & Regulatory",
-    title: "Navigating Complexity with Precision.",
-    description:
-      "Expert direct and indirect tax strategies, GST compliance, and NRI taxation structures customized for your needs.",
+    tagline: { en: "Taxation & Regulatory", ml: "നികുതിയും നിയമപരമായ സേവനങ്ങളും" },
+    title: { en: "Navigating Complexity with Precision.", ml: "സങ്കീർണ്ണമായ നികുതി രീതികൾ കൃത്യതയോടെ കൈകാര്യം ചെയ്യുന്നു." },
+    description: {
+      en: "Expert direct and indirect tax strategies, GST compliance, and NRI taxation structures customized for your needs.",
+      ml: "നിങ്ങളുടെ ആവശ്യങ്ങൾക്കനുസരിച്ച് തയ്യാറാക്കിയ വിദഗ്ദ്ധ നികുതി തന്ത്രങ്ങളും ജിഎസ്ടി കംപ്ലയൻസും.",
+    },
   },
   {
     image: "/images/hero-advisory.png",
-    tagline: "Corporate Advisory",
-    title: "Strategic Growth. Compliant Foundations.",
-    description:
-      "Helping startups and established enterprises scale safely with robust corporate governance and corporate advisory.",
+    tagline: { en: "Corporate Advisory", ml: "കോർപ്പറേറ്റ് അഡ്വൈസറി" },
+    title: { en: "Strategic Growth. Compliant Foundations.", ml: "തന്ത്രപരമായ വളർച്ച. സുരക്ഷിതമായ അടിത്തറ." },
+    description: {
+      en: "Helping startups and established enterprises scale safely with robust corporate governance and corporate advisory.",
+      ml: "ശക്തമായ കോർപ്പറേറ്റ് ഗവേണൻസോടെ സ്റ്റാർട്ടപ്പുകളെയും സ്ഥാപനങ്ങളെയും സുരക്ഷിതമായി വളരാൻ സഹായിക്കുന്നു.",
+    },
   },
 ];
 
 function Home() {
   const t = useT();
+  const { locale } = useLocale();
   const waHref = `https://wa.me/${firm.contact.whatsapp}`;
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -108,7 +115,7 @@ function Home() {
             <motion.img
               key={currentSlide}
               src={slides[currentSlide].image}
-              alt={slides[currentSlide].title}
+              alt={t(slides[currentSlide].title)}
               initial={{ scale: 1.05, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -131,13 +138,13 @@ function Home() {
                   className="max-w-2xl"
                 >
                   <span className="mb-4 inline-block text-xs uppercase tracking-[0.25em] text-gold font-medium">
-                    {slides[currentSlide].tagline}
+                    {t(slides[currentSlide].tagline)}
                   </span>
                   <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight mb-4">
-                    {slides[currentSlide].title}
+                    {t(slides[currentSlide].title)}
                   </h2>
                   <p className="text-sm sm:text-base text-gray-300 font-sans max-w-lg">
-                    {slides[currentSlide].description}
+                    {t(slides[currentSlide].description)}
                   </p>
                 </motion.div>
               </div>
@@ -183,13 +190,22 @@ function Home() {
               Est. {firm.established} · {t(firm.city)}
             </div>
             <h1 className="font-display text-[2.6rem] leading-[1.05] text-primary sm:text-6xl md:text-7xl">
-              Precision in <span className="italic text-gold">Compliance</span>.
-              <br className="hidden sm:block" />
-              Confidence in Every Decision.
+              {locale === "en" ? (
+                <>
+                  Precision in <span className="italic text-gold">Compliance</span>.
+                  <br className="hidden sm:block" />
+                  Confidence in Every Decision.
+                </>
+              ) : (
+                <>
+                  കൃത്യതയാർന്ന <span className="italic text-gold">കംപ്ലയൻസ്</span>.
+                  <br className="hidden sm:block" />
+                  ആത്മവിശ്വാസമുള്ള തീരുമാനങ്ങൾ.
+                </>
+              )}
             </h1>
             <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
-              Professional accounting, taxation, audit, and corporate advisory services backed by
-              experience and integrity.
+              {t(ui.home.hero.subtitle)}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -230,7 +246,7 @@ function Home() {
                   name: "Jibin Jose, FCA",
                   initials: "JJ",
                   role: t(ui.sections.leadAdvocate),
-                  years: "12+ years",
+                  years: t({ en: "12+ years", ml: "12+ വർഷം" }),
                   membershipNo: "[M. No.]",
                   phone: team[0].phone,
                   phoneHref: team[0].phoneHref,
@@ -238,8 +254,8 @@ function Home() {
                 {
                   name: "Anoop Antony, FCA",
                   initials: "AA",
-                  role: "Lead Partner",
-                  years: "12+ years",
+                  role: t(ui.sections.leadAdvocate),
+                  years: t({ en: "12+ years", ml: "12+ വർഷം" }),
                   membershipNo: "238806",
                   phone: team[1].phone,
                   phoneHref: team[1].phoneHref,
@@ -282,19 +298,6 @@ function Home() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 border-t border-border pt-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3 font-semibold">
-                      {t(ui.sections.courts)}
-                    </p>
-                    <ul className="grid gap-2 text-sm">
-                      {firm.courts.map((c) => (
-                        <li key={c} className="flex items-center gap-3">
-                          <ShieldCheck className="h-4 w-4 text-gold shrink-0" aria-hidden />
-                          <span className="text-foreground text-xs font-medium">{c}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
               );
             })()}
@@ -308,8 +311,8 @@ function Home() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionHeading
           eyebrow={t(ui.sections.practiceAreas)}
-          title="Specialist counsel across the matters that affect Kerala the most."
-          subtitle="Twelve focused services. Each handled personally by a partner with deep experience."
+          title={t(ui.home.practiceAreas.title)}
+          subtitle={t(ui.home.practiceAreas.subtitle)}
         />
         <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
           {practiceAreas.slice(0, 4).map((p) => (
@@ -335,31 +338,40 @@ function Home() {
               {t(ui.sections.whyUs)}
             </div>
             <h2 className="font-display text-3xl leading-tight sm:text-5xl">
-              Old-school discipline.
-              <br />
-              Modern access.
+              {locale === "en" ? (
+                <>
+                  Old-school discipline.
+                  <br />
+                  Modern access.
+                </>
+              ) : (
+                <>
+                  പരമ്പരാഗത അച്ചടക്കം.
+                  <br />
+                  ആധുനികമായ ഇടപെടൽ.
+                </>
+              )}
             </h2>
             <p className="mt-5 max-w-md text-primary-foreground/75">
-              We blend the rigour expected from a senior bar with the responsiveness clients in 2026
-              actually need.
+              {t(ui.home.whyUs.subtitle)}
             </p>
           </div>
           <ul className="grid gap-px bg-white/15 sm:grid-cols-3">
             {[
               {
                 icon: ShieldCheck,
-                title: "Transparent fees",
-                body: "Quoted upfront in writing. No surprise bills, no hidden disbursements.",
+                title: t(ui.home.whyUs.feature1Title),
+                body: t(ui.home.whyUs.feature1Body),
               },
               {
                 icon: MessageCircle,
-                title: "Direct WhatsApp",
-                body: "The partner on your matter is reachable on WhatsApp during business hours.",
+                title: t(ui.home.whyUs.feature2Title),
+                body: t(ui.home.whyUs.feature2Body),
               },
               {
                 icon: Scale,
-                title: "Compliance-expert",
-                body: `${firm.leadAdvocate.yearsOfPractice}+ years of auditing, tax filings, and representation before financial authorities.`,
+                title: t(ui.home.whyUs.feature3Title),
+                body: t(ui.home.whyUs.feature3Body),
               },
             ].map((f) => (
               <li key={f.title} className="bg-primary p-7">
@@ -374,7 +386,7 @@ function Home() {
 
       {/* TESTIMONIALS */}
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <SectionHeading eyebrow="Client voices" title={t(ui.sections.testimonials)} />
+        <SectionHeading eyebrow={t(ui.home.testimonials.eyebrow)} title={t(ui.sections.testimonials)} />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {testimonials.map((it, i) => (
             <TestimonialCard key={i} t={it} />
@@ -388,7 +400,7 @@ function Home() {
           <div className="flex items-end justify-between gap-6">
             <SectionHeading
               eyebrow={t(ui.sections.insights)}
-              title="Practical notes from our practice."
+              title={t(ui.home.insights.title)}
             />
             <Link
               to="/insights"
@@ -429,11 +441,10 @@ function Home() {
           <div className="grid gap-8 border border-gold bg-card p-8 sm:p-12 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <h2 className="font-display text-3xl leading-tight text-primary sm:text-5xl">
-                Talk to a partner today. The first 15 minutes are on us.
+                {t(ui.home.cta.title)}
               </h2>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                Describe your financial or tax needs in plain language. We'll tell you honestly how
-                we can help — and what it will cost.
+                {t(ui.home.cta.subtitle)}
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -443,7 +454,7 @@ function Home() {
                 rel="noopener noreferrer"
                 className="inline-flex flex-1 items-center justify-center gap-2 bg-[#25D366] px-6 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white"
               >
-                <MessageCircle className="h-4 w-4" /> WhatsApp · {firm.contact.phone}
+                <MessageCircle className="h-4 w-4" /> {locale === "en" ? "WhatsApp" : "വാട്സ്ആപ്പ്"} · {firm.contact.phone}
               </a>
               <a
                 href={`tel:${firm.contact.phoneHref}`}

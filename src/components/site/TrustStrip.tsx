@@ -1,14 +1,14 @@
-import { firm, reviews } from "@/content/firm";
-import { Star } from "lucide-react";
+import { useT, ui } from "@/lib/i18n";
 
 export function TrustStrip() {
+  const t = useT();
   return (
     <section aria-label="Trust signals" className="border-y border-border bg-card">
       <div className="mx-auto grid max-w-7xl grid-cols-2 divide-y divide-border sm:grid-cols-4 sm:divide-x sm:divide-y-0">
-        <Item value="24+" label="Cumulative Experience" />
-        <Item value="60+" label="Corporate Clients" />
-        <Item value="100+" label="Non-Corporate Clients" />
-        <Item value="12+" label="Service Verticals" />
+        <Item value="24+" label={t(ui.stats.experience)} />
+        <Item value="60+" label={t(ui.stats.corporate)} />
+        <Item value="100+" label={t(ui.stats.nonCorporate)} />
+        <Item value="12+" label={t(ui.stats.verticals)} />
       </div>
     </section>
   );

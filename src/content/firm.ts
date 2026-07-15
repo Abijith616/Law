@@ -46,9 +46,9 @@ export const firm = {
     yearsOfPractice: 12,
   },
   contact: {
-    phone: "+91 9746 177 541",
-    phoneHref: "+919746177541",
-    whatsapp: "919746177541",
+    phone: "+91 9652 633 511",
+    phoneHref: "+919652633511",
+    whatsapp: "919652633511",
     email: "mail.jaandassociates@gmail.com",
     address: {
       en: "4/496K, First Floor, Menachery Plaza, Near KSRTC Bus Stand, Angamaly, Ernakulam - 683572",

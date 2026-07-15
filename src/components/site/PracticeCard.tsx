@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { PracticeArea } from "@/content/firm";
-import { useT } from "@/lib/i18n";
+import { useT, ui } from "@/lib/i18n";
 import { PracticeIcon } from "./PracticeIcon";
 
 export function PracticeCard({ area }: { area: PracticeArea }) {
@@ -24,7 +24,7 @@ export function PracticeCard({ area }: { area: PracticeArea }) {
         </p>
       </div>
       <div className="flex items-center justify-between text-xs font-medium uppercase tracking-[0.18em] text-primary transition group-hover:text-gold">
-        <span>Read more</span>
+        <span>{t(ui.cta.learnMore)}</span>
         <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
     </Link>

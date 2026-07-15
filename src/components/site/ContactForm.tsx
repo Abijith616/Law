@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { submitInquiry } from "@/lib/contact.functions";
-import { practiceAreas } from "@/content/firm";
-import { useT } from "@/lib/i18n";
 
 export function ContactForm() {
-  const t = useT();
   const submit = useServerFn(submitInquiry);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -51,31 +48,8 @@ export function ContactForm() {
         <Field label="Full name" name="name" required autoComplete="name" />
         <Field label="Phone" name="phone" required type="tel" autoComplete="tel" />
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Email" name="email" type="email" autoComplete="email" />
-        <div className="grid gap-1.5">
-          <label
-            htmlFor="matter"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground"
-          >
-            Matter
-          </label>
-          <select
-            id="matter"
-            name="matter"
-            className="h-11 border border-border bg-card px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-            defaultValue=""
-          >
-            <option value="">Select an area…</option>
-            {practiceAreas.map((p) => (
-              <option key={p.slug} value={p.slug}>
-                {t(p.title)}
-              </option>
-            ))}
-            <option value="other">Other</option>
-          </select>
-        </div>
-      </div>
+      <Field label="Email" name="email" type="email" autoComplete="email" />
+      <input type="hidden" name="matter" value="general" />
       <div className="grid gap-1.5">
         <label
           htmlFor="message"
