@@ -2,56 +2,155 @@ import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Phone, Scale, ShieldCheck, MessageCircle, Star } from "lucide-react";
-import { firm, team, practiceAreas, testimonials, insights, reviews } from "@/content/firm";
+import {
+  firm as fallbackFirm,
+  team as fallbackTeam,
+  practiceAreas as fallbackPracticeAreas,
+  testimonials as fallbackTestimonials,
+  insights as fallbackInsights,
+  reviews,
+} from "@/content/firm";
 import { useT, ui, useLocale } from "@/lib/i18n";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { PracticeCard } from "@/components/site/PracticeCard";
 import { TestimonialCard } from "@/components/site/TestimonialCard";
 import { TrustStrip } from "@/components/site/TrustStrip";
+import { client } from "@/lib/sanity";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam` },
-      {
-        name: "description",
-        content:
-          "Professional Chartered Accountant firm in Angamaly, Ernakulam, Kerala. Expert auditing, taxation, GST compliance, company registration, and corporate financial advisory.",
-      },
-      {
-        property: "og:title",
-        content: `${firm.name} — Chartered Accountants in Angamaly, Ernakulam`,
-      },
-      {
-        property: "og:description",
-        content:
-          "Precision in Compliance. Confidence in Every Decision. Free 15-minute consultation, direct WhatsApp access.",
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LegalService",
-          name: firm.name,
-          telephone: firm.contact.phone,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: firm.contact.address.en,
-            addressLocality: "Angamaly",
-            addressRegion: "Kerala",
-            addressCountry: "IN",
-          },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: reviews.rating,
-            reviewCount: reviews.count,
-          },
-        }),
-      },
-    ],
-  }),
+  loader: async () => {
+    try {
+      const [sanityFirm, sanityPracticeAreas, sanityAdvocates, sanityTestimonials, sanityInsights] =
+        await Promise.all([
+          client.fetch(`*[_type == "firm"][0]`).catch(() => null),
+          client.fetch(`*[_type == "practiceArea"]`).catch(() => []),
+          client.fetch(`*[_type == "advocate"]`).catch(() => []),
+          client.fetch(`*[_type == "testimonial"]`).catch(() => []),
+          client.fetch(`*[_type == "article"] | order(date desc)[0..2]`).catch(() => []),
+        ]);
+
+      return {
+        firm: sanityFirm
+          ? {
+              ...fallbackFirm,
+              ...sanityFirm,
+              tagline: sanityFirm.tagline || fallbackFirm.tagline,
+              city: sanityFirm.city || fallbackFirm.city,
+              leadAdvocate: {
+                ...fallbackFirm.leadAdvocate,
+                ...(sanityFirm.leadAdvocate || {}),
+              },
+              contact: {
+                ...fallbackFirm.contact,
+                ...(sanityFirm.contact || {}),
+                address: sanityFirm.contact?.address || fallbackFirm.contact.address,
+                hours: sanityFirm.contact?.hours || fallbackFirm.contact.hours,
+              },
+              consultation: sanityFirm.consultation || fallbackFirm.consultation,
+            }
+          : fallbackFirm,
+
+        practiceAreas:
+          sanityPracticeAreas && sanityPracticeAreas.length > 0
+            ? sanityPracticeAreas.map((p: any) => ({
+                slug: p.slug.current,
+                icon: p.icon,
+                title: p.title,
+                short: p.short,
+                body: p.body,
+              }))
+            : fallbackPracticeAreas,
+
+        team:
+          sanityAdvocates && sanityAdvocates.length > 0
+            ? sanityAdvocates.map((a: any) => ({
+                name: a.name,
+                initials: a.initials,
+                role: a.role,
+                years: a.years,
+                phone: a.phone || fallbackFirm.contact.phone,
+                phoneHref: a.phoneHref || fallbackFirm.contact.phoneHref,
+                bio: a.bio,
+              }))
+            : fallbackTeam,
+
+        testimonials:
+          sanityTestimonials && sanityTestimonials.length > 0
+            ? sanityTestimonials.map((t: any) => ({
+                quote: t.quote,
+                author: t.author,
+                matter: t.matter,
+              }))
+            : fallbackTestimonials,
+
+        insights:
+          sanityInsights && sanityInsights.length > 0
+            ? sanityInsights.map((a: any) => ({
+                slug: a.slug.current,
+                date: a.date,
+                author: a.author,
+                title: a.title,
+                excerpt: a.excerpt,
+                body: a.body,
+              }))
+            : fallbackInsights,
+      };
+    } catch (e) {
+      console.warn("Failed to fetch home data from Sanity, using fallback:", e);
+      return {
+        firm: fallbackFirm,
+        practiceAreas: fallbackPracticeAreas,
+        team: fallbackTeam,
+        testimonials: fallbackTestimonials,
+        insights: fallbackInsights,
+      };
+    }
+  },
+  head: ({ loaderData }) => {
+    const f = loaderData?.firm || fallbackFirm;
+    return {
+      meta: [
+        { title: `${f.name} — Chartered Accountants in Angamaly, Ernakulam` },
+        {
+          name: "description",
+          content:
+            "Professional Chartered Accountant firm in Angamaly, Ernakulam, Kerala. Expert auditing, taxation, GST compliance, company registration, and corporate financial advisory.",
+        },
+        {
+          property: "og:title",
+          content: `${f.name} — Chartered Accountants in Angamaly, Ernakulam`,
+        },
+        {
+          property: "og:description",
+          content:
+            "Precision in Compliance. Confidence in Every Decision. Free 15-minute consultation, direct WhatsApp access.",
+        },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LegalService",
+            name: f.name,
+            telephone: f.contact.phone,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: f.contact.address.en,
+              addressLocality: "Angamaly",
+              addressRegion: "Kerala",
+              addressCountry: "IN",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: reviews.rating,
+              reviewCount: reviews.count,
+            },
+          }),
+        },
+      ],
+    };
+  },
   component: Home,
 });
 
@@ -86,6 +185,7 @@ const slides = [
 ];
 
 function Home() {
+  const { firm, team, practiceAreas, testimonials, insights } = Route.useLoaderData();
   const t = useT();
   const { locale } = useLocale();
   const waHref = `https://wa.me/${firm.contact.whatsapp}`;
@@ -315,7 +415,7 @@ function Home() {
           subtitle={t(ui.home.practiceAreas.subtitle)}
         />
         <div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {practiceAreas.slice(0, 4).map((p) => (
+          {practiceAreas.slice(0, 4).map((p: any) => (
             <PracticeCard key={p.slug} area={p} />
           ))}
         </div>
@@ -388,7 +488,7 @@ function Home() {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionHeading eyebrow={t(ui.home.testimonials.eyebrow)} title={t(ui.sections.testimonials)} />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((it, i) => (
+          {testimonials.map((it: any, i: number) => (
             <TestimonialCard key={i} t={it} />
           ))}
         </div>
@@ -410,7 +510,7 @@ function Home() {
             </Link>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {insights.slice(0, 3).map((a) => (
+            {insights.slice(0, 3).map((a: any) => (
               <Link
                 key={a.slug}
                 to="/insights/$slug"

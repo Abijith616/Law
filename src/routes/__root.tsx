@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useLocation,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
@@ -117,6 +118,18 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { pathname } = useLocation();
+  const isStudio = pathname.startsWith("/studio");
+
+  if (isStudio) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-screen bg-[#101112] text-foreground">
+          <Outlet />
+        </div>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

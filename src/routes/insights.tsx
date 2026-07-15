@@ -1,8 +1,29 @@
 import { createFileRoute, Link, Outlet, useMatches } from "@tanstack/react-router";
-import { firm, insights } from "@/content/firm";
+import { firm, insights as fallbackInsights } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
+import { client } from "@/lib/sanity";
 
 export const Route = createFileRoute("/insights")({
+  loader: async () => {
+    try {
+      const sanityInsights = await client.fetch(`*[_type == "article"] | order(date desc)`);
+      if (sanityInsights && sanityInsights.length > 0) {
+        return {
+          insights: sanityInsights.map((a: any) => ({
+            slug: a.slug.current,
+            date: a.date,
+            author: a.author,
+            title: a.title,
+            excerpt: a.excerpt,
+            body: a.body,
+          })),
+        };
+      }
+    } catch (e) {
+      console.warn("Failed to fetch insights from Sanity, using fallback:", e);
+    }
+    return { insights: fallbackInsights };
+  },
   head: () => ({
     meta: [
       { title: `Insights — ${firm.name}` },
@@ -20,6 +41,7 @@ export const Route = createFileRoute("/insights")({
 
 function InsightsLayout() {
   const matches = useMatches();
+  const { insights } = Route.useLoaderData();
   const t = useT();
   if (matches.some((m) => m.routeId === "/insights/$slug")) return <Outlet />;
 
@@ -38,7 +60,7 @@ function InsightsLayout() {
 
       <section className="mx-auto max-w-5xl px-5 py-16 sm:px-8 sm:py-20">
         <ul className="divide-y divide-border border-t border-b border-border">
-          {insights.map((a) => (
+          {insights.map((a: any) => (
             <li key={a.slug}>
               <Link
                 to="/insights/$slug"

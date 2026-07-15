@@ -15,6 +15,7 @@ import {
 import { firm } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { submitJobApplication } from "@/lib/careers.functions";
 
 export const Route = createFileRoute("/careers")({
   head: () => ({
@@ -221,10 +222,15 @@ function Careers() {
   const t = useT();
   const formRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [fileName, setFileName] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrorMsg("");
+    setIsSubmitting(true);
+
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = data.get("name") as string;
@@ -232,14 +238,49 @@ function Careers() {
     const phone = data.get("phone") as string;
     const message = data.get("message") as string;
 
-    const roleLabel = openings.find((o) => o.id === role)?.title ?? role;
-    const subject = encodeURIComponent(`Career Application — ${roleLabel} — ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nRole: ${roleLabel}\nSelected Resume File: ${fileName || "Not provided"}\n\nMessage:\n${message}`,
-    );
+    const fileInput = document.getElementById("careers-resume") as HTMLInputElement | null;
+    const file = fileInput?.files?.[0];
 
-    window.location.href = `mailto:${firm.contact.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    if (!file) {
+      setErrorMsg("Please select a resume file.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64String = reader.result as string;
+        try {
+          const res = await submitJobApplication({
+            data: {
+              name,
+              phone,
+              role,
+              message,
+              resumeFileName: file.name,
+              resumeBase64: base64String,
+            },
+          });
+
+          if (res.ok) {
+            setSubmitted(true);
+          } else {
+            setErrorMsg("Something went wrong. Please try again.");
+          }
+        } catch (err: any) {
+          console.error(err);
+          setErrorMsg(err?.message || "Failed to submit application. Please try again.");
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg("Failed to read the selected file.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -347,7 +388,7 @@ function Careers() {
           <SectionHeading
             eyebrow="Apply"
             title="Send your application."
-            subtitle="Fill in the details below, select your CV/resume, and your default email client will open with your pre-filled application."
+            subtitle="Fill in the details below and upload your CV/resume to apply directly to our firm."
           />
 
           {submitted ? (
@@ -357,17 +398,22 @@ function Careers() {
               className="mt-12 border border-gold bg-card p-10 text-center"
             >
               <CheckCircle className="mx-auto h-12 w-12 text-gold" />
-              <h3 className="mt-4 font-display text-2xl text-primary">Application ready!</h3>
+              <h3 className="mt-4 font-display text-2xl text-primary">Application Submitted!</h3>
               <p className="mt-2 text-muted-foreground">
-                Your email client has been opened with your application pre-filled. Please attach
-                your CV/resume {fileName ? <strong>({fileName})</strong> : ""} before hitting send.
+                Thank you for applying. Your details and resume <strong>({fileName})</strong> have been securely uploaded to our database.
               </p>
               <p className="mt-4 text-sm text-muted-foreground">
-                We aim to respond to all applications within 5 working days.
+                Our team will review your application and contact you within 5 working days.
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-12 grid gap-6">
+              {errorMsg && (
+                <div className="border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-500">
+                  {errorMsg}
+                </div>
+              )}
+              
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <label
@@ -381,8 +427,9 @@ function Careers() {
                     name="name"
                     type="text"
                     required
+                    disabled={isSubmitting}
                     placeholder="Joseph Varghese"
-                    className="border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+                    className="border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none disabled:opacity-50"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -397,8 +444,9 @@ function Careers() {
                     name="phone"
                     type="tel"
                     required
+                    disabled={isSubmitting}
                     placeholder="+91 98765 43210"
-                    className="border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+                    className="border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none disabled:opacity-50"
                   />
                 </div>
               </div>
@@ -414,8 +462,9 @@ function Careers() {
                   id="role-select"
                   name="role"
                   required
+                  disabled={isSubmitting}
                   defaultValue=""
-                  className="border border-border bg-background px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none"
+                  className="border border-border bg-background px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none disabled:opacity-50"
                 >
                   <option value="" disabled>
                     Select a role…
@@ -440,9 +489,10 @@ function Careers() {
                   id="careers-message"
                   name="message"
                   required
+                  disabled={isSubmitting}
                   rows={5}
                   placeholder="Tell us a little about yourself, your current qualifications, and why you'd like to join JA & Associates…"
-                  className="resize-none border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+                  className="resize-none border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none disabled:opacity-50"
                 />
               </div>
 
@@ -459,8 +509,9 @@ function Careers() {
                     name="resume"
                     type="file"
                     required
+                    disabled={isSubmitting}
                     accept=".pdf,.doc,.docx"
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       setFileName(file ? file.name : "");
@@ -480,20 +531,15 @@ function Careers() {
               </div>
 
               <div className="rounded-sm border border-border/60 bg-card px-4 py-3 text-xs text-muted-foreground">
-                <strong className="text-foreground">Note:</strong> Clicking "Submit Application"
-                will open your email client with your details pre-filled. Please remember to
-                manually{" "}
-                <strong className="text-foreground">
-                  attach your selected CV/resume file {fileName ? `(${fileName})` : ""}
-                </strong>{" "}
-                to the email before sending.
+                <strong className="text-foreground">Note:</strong> Your application details and resume file will be securely uploaded directly to our database for review.
               </div>
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 bg-primary px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-primary-foreground transition hover:bg-navy-deep"
+                disabled={isSubmitting}
+                className="inline-flex w-full items-center justify-center gap-2 bg-primary px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-primary-foreground transition hover:bg-navy-deep disabled:bg-primary/50 disabled:cursor-not-allowed"
               >
-                Submit Application <ArrowRight className="h-4 w-4" />
+                {isSubmitting ? "Submitting Application…" : "Submit Application"} <ArrowRight className="h-4 w-4" />
               </button>
             </form>
           )}

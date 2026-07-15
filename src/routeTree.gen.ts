@@ -16,6 +16,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudioSplatRouteImport } from './routes/studio.$'
 import { Route as PracticeAreasSlugRouteImport } from './routes/practice-areas.$slug'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
@@ -54,6 +55,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudioSplatRoute = StudioSplatRouteImport.update({
+  id: '/studio/$',
+  path: '/studio/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PracticeAreasSlugRoute = PracticeAreasSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/team': typeof TeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
+  '/studio/$': typeof StudioSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/team': typeof TeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
+  '/studio/$': typeof StudioSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/team': typeof TeamRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/practice-areas/$slug': typeof PracticeAreasSlugRoute
+  '/studio/$': typeof StudioSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/insights/$slug'
     | '/practice-areas/$slug'
+    | '/studio/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/insights/$slug'
     | '/practice-areas/$slug'
+    | '/studio/$'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/team'
     | '/insights/$slug'
     | '/practice-areas/$slug'
+    | '/studio/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRouteWithChildren
   PracticeAreasRoute: typeof PracticeAreasRouteWithChildren
   TeamRoute: typeof TeamRoute
+  StudioSplatRoute: typeof StudioSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -196,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/studio/$': {
+      id: '/studio/$'
+      path: '/studio/$'
+      fullPath: '/studio/$'
+      preLoaderRoute: typeof StudioSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/practice-areas/$slug': {
       id: '/practice-areas/$slug'
       path: '/$slug'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRouteWithChildren,
   PracticeAreasRoute: PracticeAreasRouteWithChildren,
   TeamRoute: TeamRoute,
+  StudioSplatRoute: StudioSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

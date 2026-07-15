@@ -1,11 +1,33 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { firm, insights } from "@/content/firm";
+import { firm, insights as fallbackInsights } from "@/content/firm";
 import { useT, ui } from "@/lib/i18n";
+import { client } from "@/lib/sanity";
 
 export const Route = createFileRoute("/insights/$slug")({
-  loader: ({ params }) => {
-    const article = insights.find((a) => a.slug === params.slug);
+  loader: async ({ params }) => {
+    try {
+      const sanityArticle = await client.fetch(
+        `*[_type == "article" && slug.current == $slug][0]`,
+        { slug: params.slug },
+      );
+      if (sanityArticle) {
+        return {
+          article: {
+            slug: sanityArticle.slug.current,
+            date: sanityArticle.date,
+            author: sanityArticle.author,
+            title: sanityArticle.title,
+            excerpt: sanityArticle.excerpt,
+            body: sanityArticle.body,
+          },
+        };
+      }
+    } catch (e) {
+      console.warn("Failed to fetch article from Sanity, using fallback:", e);
+    }
+
+    const article = fallbackInsights.find((a) => a.slug === params.slug);
     if (!article) throw notFound();
     return { article };
   },
